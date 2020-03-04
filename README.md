@@ -1,12 +1,13 @@
-# starter-snake-python
+
+
+
+# baelx's starter-snake-python
 
 A simple [Battlesnake](http://play.battlesnake.com) written in Python.
 
-Visit [https://github.com/BattlesnakeOfficial/community/blob/master/starter-snakes.md](https://github.com/BattlesnakeOfficial/community/blob/master/starter-snakes.md) for API documentation and instructions for running your AI.
-
 This AI client uses the [bottle web framework](http://bottlepy.org/docs/dev/index.html) to serve requests and the [gunicorn web server](http://gunicorn.org/) for running bottle on Heroku. Dependencies are listed in [requirements.txt](requirements.txt).
 
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+This fork uses the bottle.run flag reloader=True for "live-reloading" development support. 
 
 ## Prerequisites
 
@@ -14,35 +15,39 @@ This AI client uses the [bottle web framework](http://bottlepy.org/docs/dev/inde
   - [MacOS](http://hackercodex.com/guide/python-development-environment-on-mac-osx/)
   - [Windows](https://docs.battlesnake.com/tutorials/python)
 - [pip](https://pip.pypa.io/en/latest/installing.html) to install Python dependencies
-- Experience [deploying Python apps to Heroku](https://devcenter.heroku.com/articles/getting-started-with-python#introduction)
 
 ## Running the Snake Locally
 
-1. [Fork this repo](https://github.com/BattlesnakeOfficial/starter-snake-python/fork).
+1. Git clone or fork(this project itself forked from the original starter-snake-python project)
 
-2. Clone repo to your development environment:
-
-    ```shell
-    git clone git@github.com:<your github username>/starter-snake-python.git
-    ```
-
-3. Install dependencies using [pip](https://pip.pypa.io/en/latest/installing.html):
+2. Install dependencies using [pip](https://pip.pypa.io/en/latest/installing.html):
 
     ```shell
     pip install -r requirements.txt
     ```
+3. Install pyngrok tunnel service:
 
-4. Run local server:
+    ```shell
+    pip install pyngrok
+    ```
+    This will make the ngrok shell command available which we'll run below.
+
+4. Run local bottle server:
 
     ```shell
     python app/server.py
     ```
+    This should spin up a simple web server and API(defined in server.py). It will reload when changes to that file are made for easy development.
 
-5. Test your snake by opening your snake server in your browser
+5. Test your snake by opening your snake server in your browser. This will very likely be at localhost:8080 unless that port is already open.
+
+6. *(Optional)* If you wish to be able to add this local dev version of your snake to the BS servers for testing, get an ngrok tunnel going:
 
     ```shell
-    open http://127.0.0.1:8080/
+    ngrok http 8080
     ```
+
+    This will need to be run in a separate tab. It'll output the public url of the tunnel and some nice, simple logging.
 
 ## Deploying to Heroku
 
